@@ -1,11 +1,14 @@
 package com.aysuda.uidesign.presentation
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.ScrollState
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -22,28 +25,34 @@ import com.aysuda.uidesign.domain.Test
 @Composable
 fun TestScreen(
     modifier: Modifier = Modifier,
-    items:List<Test>
+    items: List<Test>
 ) {
-    LazyColumn(
-        modifier = Modifier
-            .padding(16.dp)
-            .verticalScroll(
-                state = ScrollState(0),
-            )
-    ) {
-        stickyHeader {
-            Text(text = stringResource(R.string.header))
-        }
-        itemsIndexed(items) { index, item ->
-            if(index%2==0){
-                RowItem(modifier=Modifier,titles = item.pairTitles)
-            }else{
-               CardItem(modifier=Modifier,title =item.singleTitle)
+    BoxWithConstraints {
+        Box(
+            modifier = modifier
+                .padding(16.dp)
+                .fillMaxSize()
+        ) {
+            LazyColumn() {
+                stickyHeader {
+                    Text(text = stringResource(R.string.header))
+                }
+                items.forEach {
+
+                    itemsIndexed(items) { index, item ->
+                        if (index % 2 == 0) {
+                            RowItem(modifier = Modifier, titles = item.pairTitles)
+                        } else {
+                            CardItem(modifier = Modifier, title = item.singleTitle)
+                        }
+                        Spacer(modifier = Modifier.size(16.dp))
+                    }
+                }
+
             }
         }
     }
 }
-
 
 @Preview
 @Composable

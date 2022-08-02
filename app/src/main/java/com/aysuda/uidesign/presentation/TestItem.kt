@@ -29,7 +29,6 @@ fun RowItem(
                 .padding(horizontal = 8.dp)
                 .background(Color(0xFFECECEC))
                 .size(1.dp, 16.dp)
-                .align(Alignment.CenterVertically)
         )
         CardItem(title = titles.second)
     }
