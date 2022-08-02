@@ -1,6 +1,13 @@
 package com.aysuda.uidesign.domain
 
+import androidx.compose.ui.graphics.Color
+
 data class Test(
-    val singleTitle:String,
-    val pairTitles:Pair<String,String>
+    val title: String,
+    val type: TestType,
+    val color: Color
 )
+
+enum class TestType {
+    collapsed, expand
+}
