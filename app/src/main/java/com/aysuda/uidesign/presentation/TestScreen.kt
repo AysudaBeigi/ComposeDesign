@@ -1,25 +1,22 @@
 package com.aysuda.uidesign.presentation
 
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.aysuda.uidesign.R
 import com.aysuda.uidesign.domain.Test
-import com.aysuda.uidesign.domain.TestType
-import androidx.compose.foundation.lazy.items
 
 @OptIn(
     ExperimentalAnimationApi::class,
@@ -41,21 +38,39 @@ fun TestScreen(
                     Text(text = stringResource(R.string.header))
                 }
                 items(tests) { test ->
-                    if (test.type == TestType.collapsed) {
-                        CardItem(modifier = Modifier, title = test.title,test.color)
-                        Spacer(
-                            modifier = Modifier
-                                .padding(horizontal = 8.dp)
-                                .background(Color(0xFFECECEC))
-                                .size(1.dp, 16.dp)
-                        )
-                    } else {
-                        CardItem(modifier = Modifier, title = test.title,test.color)
+
+                    when (test) {
+                        is Test.CollapsedItem -> {
+                            RowItem(test)
+                        }
+                        is Test.ExpandedItem -> {
+                            CardItem(
+                                modifier = Modifier,
+                                title = test.item.title,
+                                test.item.color
+                            )
+                        }
                     }
-                    Spacer(modifier = Modifier.size(16.dp))
                 }
             }
         }
+    }
+}
+
+@Composable
+private fun RowItem(test: Test.CollapsedItem) {
+    Row {
+        CardItem(
+            modifier = Modifier,
+            title = test.items[0].title,
+            test.items[0].color
+        )
+        Spacer(modifier = Modifier.weight(1f))
+        CardItem(
+            modifier = Modifier,
+            title = test.items[1].title,
+            test.items[1].color
+        )
     }
 }
 

@@ -5,8 +5,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.material.MaterialTheme
 import androidx.compose.ui.graphics.Color
+import com.aysuda.uidesign.domain.Item
 import com.aysuda.uidesign.domain.Test
-import com.aysuda.uidesign.domain.TestType
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,12 +15,20 @@ class MainActivity : ComponentActivity() {
             MaterialTheme {
                 TestScreen(
                     tests = listOf(
-                        Test("zero", TestType.collapsed, color = Color.Red),
-                        Test("one", TestType.collapsed, color = Color.Blue),
-                        Test("two", TestType.collapsed, color = Color.Black),
-                        Test("three", TestType.collapsed, color = Color.Green),
-                        Test("four", TestType.collapsed, color = Color.Yellow),
-                        Test("five", TestType.collapsed, color = Color.Magenta),
+                        Test.CollapsedItem(
+                            items = listOf(
+                                Item(title = "", color = Color.Yellow),
+                                Item(title = "", color = Color.Yellow)
+                            )
+                        ),
+                        Test.ExpandedItem(item = Item(title = "", color = Color.Yellow)),
+                        Test.CollapsedItem(
+                            items = listOf(
+                                Item(title = "", color = Color.Yellow),
+                                Item(title = "", color = Color.Yellow)
+                            )
+                        ),
+                        Test.ExpandedItem(item = Item(title = "", color = Color.Yellow)),
                     )
                 )
             }

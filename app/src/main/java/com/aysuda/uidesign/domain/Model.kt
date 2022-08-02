@@ -2,12 +2,17 @@ package com.aysuda.uidesign.domain
 
 import androidx.compose.ui.graphics.Color
 
-data class Test(
-    val title: String,
-    val type: TestType,
-    val color: Color
-)
+sealed class Test {
+    data class CollapsedItem(
+        val items: List<Item>
+    ) : Test()
 
-enum class TestType {
-    collapsed, expand
+    data class ExpandedItem(
+        val item: Item
+    ) : Test()
 }
+
+data class Item(
+    val title: String,
+    val color: Color,
+)
