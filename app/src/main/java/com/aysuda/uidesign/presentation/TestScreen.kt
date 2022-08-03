@@ -11,7 +11,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
+import androidx.compose.material.primarySurface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -49,12 +51,12 @@ fun TestScreen(
 
                     when (test) {
                         is Test.CollapsedItem -> {
-                            CollapsedItem(test)
+                            CollapsedItems(test)
                             Spacer(modifier = Modifier.size(16.dp))
                         }
                         is Test.ExpandedItem -> {
                             Item(
-                                modifier =modifier
+                                modifier = modifier
                                     .fillMaxWidth()
                                     .height(250.dp),
                                 title = test.item.title,
@@ -72,4 +74,37 @@ fun TestScreen(
 @Preview
 @Composable
 fun MessageDetailsPreview() {
+    MaterialTheme {
+        TestScreen(
+            tests = listOf(
+                Test.CollapsedItem(
+                    items = listOf(
+                        com.aysuda.uidesign.domain.Item(title = "zero", color = Color.Red),
+                        com.aysuda.uidesign.domain.Item(
+                            title = "one",
+                            color = Color.Blue.copy(green = .5f)
+                        )
+                    )
+                ),
+                Test.ExpandedItem(
+                    item = com.aysuda.uidesign.domain.Item(
+                        title = "two",
+                        color = MaterialTheme.colors.primarySurface
+                    )
+                ),
+                Test.CollapsedItem(
+                    items = listOf(
+                        com.aysuda.uidesign.domain.Item(title = "three", color = Color.Green),
+                        com.aysuda.uidesign.domain.Item(title = "four", color = Color.Yellow)
+                    )
+                ),
+                Test.ExpandedItem(
+                    item = com.aysuda.uidesign.domain.Item(
+                        title = "five",
+                        color = Color.Magenta
+                    )
+                ),
+            ), modifier = Modifier
+        )
+    }
 }

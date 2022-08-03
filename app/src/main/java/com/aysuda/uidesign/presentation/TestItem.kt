@@ -49,7 +49,7 @@ fun Item(
 }
 
 @Composable
-fun CollapsedItem(test: Test.CollapsedItem) {
+fun CollapsedItems(test: Test.CollapsedItem) {
     Row {
         Item(
             modifier = Modifier.weight(1f).height(150.dp),
