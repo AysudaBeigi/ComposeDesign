@@ -17,18 +17,18 @@ class MainActivity : ComponentActivity() {
                     tests = listOf(
                         Test.CollapsedItem(
                             items = listOf(
-                                Item(title = "", color = Color.Yellow),
-                                Item(title = "", color = Color.Yellow)
+                                Item(title = "", color = Color.Red),
+                                Item(title = "", color = Color.Blue)
                             )
                         ),
-                        Test.ExpandedItem(item = Item(title = "", color = Color.Yellow)),
+                        Test.ExpandedItem(item = Item(title = "", color = Color.DarkGray)),
                         Test.CollapsedItem(
                             items = listOf(
-                                Item(title = "", color = Color.Yellow),
+                                Item(title = "", color = Color.Green),
                                 Item(title = "", color = Color.Yellow)
                             )
                         ),
-                        Test.ExpandedItem(item = Item(title = "", color = Color.Yellow)),
+                        Test.ExpandedItem(item = Item(title = "", color = Color.Magenta)),
                     )
                 )
             }
