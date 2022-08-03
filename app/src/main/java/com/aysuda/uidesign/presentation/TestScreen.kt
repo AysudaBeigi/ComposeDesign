@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
@@ -51,8 +53,10 @@ fun TestScreen(
                             Spacer(modifier = Modifier.size(16.dp))
                         }
                         is Test.ExpandedItem -> {
-                            ExpandedItem(
-                                modifier = Modifier,
+                            Item(
+                                modifier =modifier
+                                    .fillMaxWidth()
+                                    .height(250.dp),
                                 title = test.item.title,
                                 test.item.color
                             )
